@@ -1,0 +1,190 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format: MOM-{#####}",
+ "creation": "2023-12-26 13:18:49.118841",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "meeting_tab",
+  "section_break_fb6q",
+  "meeting_title",
+  "meeting_type",
+  "attendees",
+  "absentees",
+  "column_break_tsdj",
+  "project_name",
+  "customer",
+  "supplier_name",
+  "status",
+  "meeting_start_time",
+  "meeting_end_time",
+  "duration",
+  "meeting_discussions_tab",
+  "section_break_ezpi",
+  "meeting_agenda",
+  "column_break_dnds",
+  "discussion_points",
+  "out_comes_tab",
+  "assigned_to_with_deadlines",
+  "attachments",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "meeting_tab",
+   "fieldtype": "Tab Break",
+   "label": "Meeting"
+  },
+  {
+   "fieldname": "section_break_fb6q",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "meeting_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Meeting Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "meeting_type",
+   "fieldtype": "Select",
+   "label": "Meeting Type",
+   "options": "\nStand-up\nSprint Planning\nReview"
+  },
+  {
+   "fieldname": "attendees",
+   "fieldtype": "Small Text",
+   "label": "Attendees"
+  },
+  {
+   "fieldname": "absentees",
+   "fieldtype": "Small Text",
+   "label": "Absentees"
+  },
+  {
+   "fieldname": "column_break_tsdj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Link",
+   "label": "Project Name",
+   "options": "Project"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "supplier_name",
+   "fieldtype": "Link",
+   "label": "Supplier Name",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nPlanned\nCompleted\nPostponed"
+  },
+  {
+   "fieldname": "meeting_start_time",
+   "fieldtype": "Datetime",
+   "label": "Meeting Start Time"
+  },
+  {
+   "fieldname": "meeting_end_time",
+   "fieldtype": "Datetime",
+   "label": "Meeting End Time"
+  },
+  {
+   "fieldname": "duration",
+   "fieldtype": "Data",
+   "label": "Duration"
+  },
+  {
+   "fieldname": "meeting_discussions_tab",
+   "fieldtype": "Tab Break",
+   "label": "Meeting Discussions"
+  },
+  {
+   "fieldname": "section_break_ezpi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "meeting_agenda",
+   "fieldtype": "Text Editor",
+   "label": "Meeting Agenda"
+  },
+  {
+   "fieldname": "column_break_dnds",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "discussion_points",
+   "fieldtype": "Text Editor",
+   "label": "Discussion Points"
+  },
+  {
+   "fieldname": "out_comes_tab",
+   "fieldtype": "Tab Break",
+   "label": "Out Comes"
+  },
+  {
+   "fieldname": "assigned_to_with_deadlines",
+   "fieldtype": "Text Editor",
+   "label": "Assigned To With Deadlines"
+  },
+  {
+   "fieldname": "attachments",
+   "fieldtype": "Table",
+   "label": "Attachments",
+   "options": "Multi Attachments"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Meeting of Minutes",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-03-02 22:22:43.012746",
+ "modified_by": "Administrator",
+ "module": "custom_app",
+ "name": "Meeting of Minutes",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "meeting_title",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "meeting_title",
+ "track_changes": 1
+}

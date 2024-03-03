@@ -214,13 +214,13 @@ accounts@lsaoffice.com'''
 
         # Create a new WhatsApp Message Log document
         sales_invoice_whatsapp_log = frappe.new_doc('WhatsApp Message Log')
-        sales_invoice_whatsapp_log.sales_invoice = docname
+        sales_invoice_whatsapp_log.sales_order = docname
         sales_invoice_whatsapp_log.customer = customer_id
         sales_invoice_whatsapp_log.posting_date = from_date
         sales_invoice_whatsapp_log.send_date = frappe.utils.nowdate() 
         sales_invoice_whatsapp_log.total_amount = total
         sales_invoice_whatsapp_log.mobile_no = new_mobile
-        sales_invoice_whatsapp_log.sales_invoice = docname
+        sales_invoice_whatsapp_log.sales_order = docname
         sales_invoice_whatsapp_log.sender = frappe.session.user 
         sales_invoice_whatsapp_log.insert(ignore_permissions=True)
         frappe.msgprint("WhatsApp message sent successfully")
@@ -235,4 +235,3 @@ accounts@lsaoffice.com'''
         frappe.logger().error(f"Error: {e}")
         frappe.msgprint("An unexpected error occurred while sending the WhatsApp message. Please contact the system administrator.")
     
-

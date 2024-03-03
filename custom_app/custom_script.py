@@ -188,9 +188,8 @@ LSA Office Account Team
 accounts@lsaoffice.com'''
         
         link = frappe.utils.get_url(
-            f"/api/method/frappe.utils.print_format.download_pdf?doctype=Sales%20Invoice&name={docname}&format=Sales%20Order%20Format&no_letterhead=0&letterhead=LSA&settings=%7B%7D&_lang=en/LSA-{docname}.pdf"
+            f"/api/method/frappe.utils.print_format.download_pdf?doctype=Sales%20Order&name={docname}&format=Sales%20Order%20Format&no_letterhead=0&letterhead=360ithub&settings=%7B%7D&_lang=en/360ithub-{docname}.pdf"
         )
-
 
 
 

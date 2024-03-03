@@ -156,3 +156,84 @@ def update_todo(todo_name, updated_values):
     todo.update(updated_values_dict)
     todo.save()
     return True
+
+
+
+import requests
+
+@frappe.whitelist()
+def send_whatsapp_message(docname, customer, customer_id, from_date,total, new_mobile):
+    try:
+        # Check if the mobile number has 10 digits
+        if len(new_mobile) != 10:
+            frappe.msgprint("Please provide a valid 10-digit mobile number.")
+            return
+
+        message = f'''Dear {customer},
+
+Your Sale Order for {from_date}  is due for amount of Rs {total}/- Kindly pay on below bank amount details
+
+Our Bank Account
+Lokesh Sankhala and ASSOSCIATES
+Account No = 73830200000526
+IFSC = BARB0VJJCRO
+Bank = Bank of Baroda,JC Road,Bangalore-560002
+UPI id = LSABOB@UPI
+Gpay / Phonepe no = 9513199200
+
+Call us immediately in case of query.
+
+Best Regards,
+LSA Office Account Team
+accounts@lsaoffice.com'''
+        
+        link = frappe.utils.get_url(
+            f"/api/method/frappe.utils.print_format.download_pdf?doctype=Sales%20Invoice&name={docname}&format=Sales%20Order%20Format&no_letterhead=0&letterhead=LSA&settings=%7B%7D&_lang=en/LSA-{docname}.pdf"
+        )
+
+
+
+
+        url = "https://wts.vision360solutions.co.in/api/sendFileWithCaption"
+        params = {
+            "token": "609bc2d1392a635870527076",
+            "phone": f"91{new_mobile}",
+            "message": message,
+            "link": link
+        }
+        response = requests.post(url, params=params)
+        response.raise_for_status()  # Raise an error for HTTP errors (status codes other than 2xx)
+        response_data = response.json()
+
+        # # Check if the response status is 'success'
+        # if response_data.get('status') == 'success':
+        #     # Log the success
+        #     frappe.logger().info("WhatsApp message sent successfully")
+
+
+        frappe.logger().info(f"Sales Invoice response: {response.text}")
+
+        # Create a new WhatsApp Message Log document
+        sales_invoice_whatsapp_log = frappe.new_doc('WhatsApp Message Log')
+        sales_invoice_whatsapp_log.sales_invoice = docname
+        sales_invoice_whatsapp_log.customer = customer_id
+        sales_invoice_whatsapp_log.posting_date = from_date
+        sales_invoice_whatsapp_log.send_date = frappe.utils.nowdate() 
+        sales_invoice_whatsapp_log.total_amount = total
+        sales_invoice_whatsapp_log.mobile_no = new_mobile
+        sales_invoice_whatsapp_log.sales_invoice = docname
+        sales_invoice_whatsapp_log.sender = frappe.session.user 
+        sales_invoice_whatsapp_log.insert(ignore_permissions=True)
+        frappe.msgprint("WhatsApp message sent successfully")
+
+    except requests.exceptions.RequestException as e:
+        # Log the exception and provide feedback to the user
+        frappe.logger().error(f"Network error: {e}")
+        frappe.msgprint("An error occurred while sending the WhatsApp message. Please try again later.")
+
+    except Exception as e:
+        # Log the exception and provide feedback to the user
+        frappe.logger().error(f"Error: {e}")
+        frappe.msgprint("An unexpected error occurred while sending the WhatsApp message. Please contact the system administrator.")
+    
+

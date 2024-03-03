@@ -764,9 +764,8 @@ def aisensy_sales_order_wo_link(docname,customer_id, customer,from_date,to_date,
         sensy_api_url = ai_sensy_url
 
         sales_order_url = frappe.utils.get_url(
-            f"/api/method/frappe.utils.print_format.download_pdf?doctype=Sales%20Order&name={docname}&format=Sales%20Order%20Format&no_letterhead=0&letterhead=LSA&settings=%7B%7D&_lang=en"
+            f"/api/method/frappe.utils.print_format.download_pdf?doctype=Sales%20Order&name={docname}&http://192.168.1.31:8028/api/method/frappe.utils.print_format.download_pdf?doctype=Sales%20Order&name=SAL-ORD-2024-00000&format=Sales%20Order%20Format&no_letterhead=0&letterhead=360ithub&settings=%7B%7D&_lang=en"
         )
-
         # Example payload to send to the AI Sensy API
         payload = {
             "apiKey": ai_sensy_api1,  # Replace with your actual API key
